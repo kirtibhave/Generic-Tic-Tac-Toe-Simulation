@@ -7,6 +7,10 @@ declare -a board
 readonly BOARDSIZE=$1
 ROWSIZE=$BOARDSIZE
 COLUMNSIZE=$ROWSIZE
+PLAYER=1
+
+#VARIABLES
+randomCheck=$(($RANDOM%2))
 
 #function is used to Start fresh by resetting the board
 function resetBoard(){
@@ -22,8 +26,7 @@ function resetBoard(){
 
 #function is used to assign the letters to a player
 function assignSymbols(){
-randomChecksign=$(($RANDOM%2))
-	if [ $randomChecksign == 1 ]
+	if [ $randomCheck -eq $PLAYER ]
 	then
 		sign="X"
 	else
@@ -31,5 +34,16 @@ randomChecksign=$(($RANDOM%2))
 	fi
 }
 
+#function is used to check who playes first
+function checkTurn(){
+	if [ $randomCheck -eq $PLAYER ]
+	then
+		echo "player will be played first"
+	else
+		echo "player will be played first"
+	fi
+}
+
 resetBoard
 assignSymbols
+checkTurn
